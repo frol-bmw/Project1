@@ -14,3 +14,23 @@
 
 
 Целевая аудитория：студенты, школьники, офисные работники, преподователи.
+
+*In English*:
+
+# Task book, multifunctional notebook
+
+The goal of this project is to develop a web application for managing tasks with the ability to add, edit, and manage them. The user will have access to functions such as: setting deadlines for completing tasks, sorting tasks by importance, and so on. This addition will save time and increase the productivity of performing these tasks. 
+Main functions:
+
+1. Create Tasks: Easily add new tasks with descriptions and deadlines.
+ 
+2. Categories and Tags: Organize tasks by categories or tags for easy search.
+
+3. Priorities: Set priority levels for each task to focus on what is most important.
+
+4. Reminders: Receive notifications about deadlines so that you don't forget about important things.
+
+5. Simple interface: Intuitive design that allows you to quickly add and edit tasks.
+
+
+Target audience: students, schoolchildren, office workers, teachers.
