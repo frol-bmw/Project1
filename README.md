@@ -41,3 +41,9 @@ Main functions:
 
 
 Target audience: students, schoolchildren, office workers, teachers.
+
+This project will be written using: Visual Studio Code; Microsoft Visual Studio.
+
+This project will be written in the programming language: C++/C#;
+
+User interface: Interaction via console or graphical interface;
