@@ -7,7 +7,7 @@ struct Task {
     string title;
     string description;
     string category;
-    int priority; // 1 - низкий, 2 - средний, 3 - высокий
+    int priority; // 
     };
 
   void displayMenu() {
@@ -29,4 +29,6 @@ void Zadaniedobavlenie(vector<Task>& tasks) {
     getline(cin, new1.description);
     cout << "Введите категорию задачи: ";
     getline(cin, new1.category);
+    cout << "Введите приоритет задачи (1 - низкий, 2 - средний, 3 - высокий): ";
+    cin >> newTask.priority;
 }
