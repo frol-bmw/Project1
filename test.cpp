@@ -3,6 +3,13 @@
 int main()
 {
 using namespace std;
+struct Task {
+    string title;
+    string description;
+    string category;
+    int priority; // 1 - низкий, 2 - средний, 3 - высокий
+    };
+
   void displayMenu() {
     cout << "Записная книжка" << endl;
     cout << "1. Добавить запись" << endl;
@@ -14,5 +21,12 @@ using namespace std;
     cout << "7. Выход" << endl;
  
 }
-
+void Zadaniedobavlenie(vector<Task>& tasks) {
+    Task new1;
+    cout << "Введите заголовок задачи: ";
+    getline(cin, new1.title);
+    cout << "Введите описание задачи: ";
+    getline(cin, new1.description);
+    cout << "Введите категорию задачи: ";
+    getline(cin, new1.category);
 }
