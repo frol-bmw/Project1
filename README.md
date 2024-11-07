@@ -15,11 +15,11 @@
 
 Целевая аудитория：студенты, школьники, офисные работники, преподователи.
 
-Данный проект будет написан с помощью: Visual studio code ; Microsoft visual studio. 
+Данный проект будет написан с помощью:Microsoft visual studio. 
 
-Данный проект будети написан на языке програмирования: C++ / C# ;
+Данный проект будети написан на языке програмирования: C++ ;
 
-Интерфейс пользователя: Взаимодействие через консоль или графический интерфейс;
+Интерфейс пользователя: Взаимодействие через графический интерфейс;
 
 
 # Task book, multifunctional notebook
@@ -42,8 +42,8 @@ Main functions:
 
 Target audience: students, schoolchildren, office workers, teachers.
 
-This project will be written using: Visual Studio Code; Microsoft Visual Studio.
+This project will be written using:Microsoft Visual Studio.
 
-This project will be written in the programming language: C++/C#;
+This project will be written in the programming language: C++;
 
-User interface: Interaction via console or graphical interface;
+User interface: Interaction with graphical interface;
