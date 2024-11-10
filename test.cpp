@@ -10,25 +10,41 @@ struct Task {
     int priority; // 
     };
 
-  void displayMenu() {
-    cout << "Записная книжка" << endl;
-    cout << "1. Добавить запись" << endl;
-    cout << "2. Просмотреть записи" << endl;
-    cout << "3. Изменить запись" << endl;
-    cout << "4. Удалить запись" << endl;
-    cout << "5. Сохранить в файл" << endl;
-    cout << "6. Загрузить из файла" << endl;
-    cout << "7. Выход" << endl;
- 
-}
-void Zadaniedobavlenie(vector<Task>& tasks) {
-    Task new1;
-    cout << "Введите заголовок задачи: ";
-    getline(cin, new1.title);
-    cout << "Введите описание задачи: ";
-    getline(cin, new1.description);
-    cout << "Введите категорию задачи: ";
-    getline(cin, new1.category);
-    cout << "Введите приоритет задачи (1 - низкий, 2 - средний, 3 - высокий): ";
-    cin >> newTask.priority;
-}
+ do {
+        std::cout << "\nМеню управления задачами:\n";
+        std::cout << "1. Добавить задачу\n";
+        std::cout << "2. Редактировать задачу\n";
+        std::cout << "3. Показать задачи\n";
+        std::cout << "4. Выход\n";
+        std::cout << "Введите ваш выбор: ";
+        std::cin >> choice;
+
+        if (choice == 1) {
+            std::string description, deadline;
+            int priority;
+            std::cout << "Введите описание задачи: ";
+            std::cin.ignore(); // Игнорируем символ новой строки, оставшийся в буфере
+            std::getline(std::cin, description);
+            std::cout << "Введите срок выполнения: ";
+            std::getline(std::cin, deadline);
+            std::cout << "Введите приоритет (1-5): ";
+            std::cin >> priority;
+            manager.addTask(description, deadline, priority);
+        } else if (choice == 2) {
+            int index;
+            std::string description, deadline;
+            int priority;
+            std::cout << "Введите индекс задачи для редактирования: ";
+            std::cin >> index;
+            std::cout << "Введите новое описание задачи: ";
+            std::cin.ignore();
+            std::getline(std::cin, description);
+            std::cout << "Введите новый срок выполнения: ";
+            std::getline(std::cin, deadline);
+            std::cout << "Введите новый приоритет (1-5): ";
+            std::cin >> priority;
+            manager.editTask(index - 1, description, deadline, priority);
+        } else if (choice == 3) {
+            manager.displayTasks();
+        }
+    } while (choice != 4);
