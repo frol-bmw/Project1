@@ -1,12 +1,14 @@
 #include <iostream>
-#include <clocale>
+#include <map>
+#include <string>
+#include <iomanip>
+#include <sstream>
 
 using namespace std;
 
 
 int main() {
     setlocale(LC_ALL, "Russian");
-    Notebook notebook;
     int year, month, day;
     string entry;
     char choice;
@@ -20,10 +22,9 @@ int main() {
         cin >> day;
 
         cout << "Введите запись: ";
-        cin.ignore(); 
-        getline(cin, entry);
+        cin.ignore();
 
-        notebook.addEntry(year, month, day, entry);
+        (year, month, day, entry);
 
         cout << "Хотите добавить еще одну запись? (y/n): ";
         cin >> choice;
@@ -39,7 +40,7 @@ int main() {
         cout << "Введите день для просмотра записи: ";
         cin >> day;
 
-        notebook.viewEntry(year, month, day);
+        (year, month, day);
 
         cout << "Хотите просмотреть другую запись? (y/n): ";
         cin >> choice;
