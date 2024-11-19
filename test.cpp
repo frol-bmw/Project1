@@ -9,7 +9,7 @@ using namespace std;
 struct Task {
     string description;
     string category;
-    string tag;
+
     int priority; // 1: low, 2: medium, 3: high
     time_t deadline; // Unix timestamp
 };
@@ -18,13 +18,10 @@ struct Task {
 void addTask(vector<Task>& tasks) {
     Task newTask;
     cout << "Описание задачи: ";
-    getline(cin >> ws, newTask.description); // ws - игнорирует пробелы
+    getline(cin >> ws, newTask.description); 
 
     cout << "Категория: ";
     getline(cin >> ws, newTask.category);
-
-    cout << "Тег (необязательно): ";
-    getline(cin >> ws, newTask.tag);
 
     cout << "Приоритет (1-низкий, 2-средний, 3-высокий): ";
     cin >> newTask.priority;
@@ -55,7 +52,7 @@ void printTasks(const vector<Task>& tasks) {
         cout << "Категория: " << task.category << endl;
      
         cout << "Приоритет: " << task.priority << endl;
-        cout << "Срок: " << ctime(&task.deadline); // ctime форматирует time_t
+        cout << "Срок: " << ctime(&task.deadline); 
         cout << "----\n";
     }
 }
