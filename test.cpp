@@ -1,50 +1,85 @@
 ﻿#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm> // for sort
+#include <ctime>    // for time_t
 
-int main()
-{
 using namespace std;
+
 struct Task {
-    string title;
     string description;
     string category;
-    int priority; // 
-    };
+    string tag;
+    int priority; // 1: low, 2: medium, 3: high
+    time_t deadline; // Unix timestamp
+};
 
- do {
-        std::cout << "\nМеню управления задачами:\n";
-        std::cout << "1. Добавить задачу\n";
-        std::cout << "2. Редактировать задачу\n";
-        std::cout << "3. Показать задачи\n";
-        std::cout << "4. Выход\n";
-        std::cout << "Введите ваш выбор: ";
-        std::cin >> choice;
 
-        if (choice == 1) {
-            std::string description, deadline;
-            int priority;
-            std::cout << "Введите описание задачи: ";
-            std::cin.ignore(); // Игнорируем символ новой строки, оставшийся в буфере
-            std::getline(std::cin, description);
-            std::cout << "Введите срок выполнения: ";
-            std::getline(std::cin, deadline);
-            std::cout << "Введите приоритет (1-5): ";
-            std::cin >> priority;
-            manager.addTask(description, deadline, priority);
-        } else if (choice == 2) {
-            int index;
-            std::string description, deadline;
-            int priority;
-            std::cout << "Введите индекс задачи для редактирования: ";
-            std::cin >> index;
-            std::cout << "Введите новое описание задачи: ";
-            std::cin.ignore();
-            std::getline(std::cin, description);
-            std::cout << "Введите новый срок выполнения: ";
-            std::getline(std::cin, deadline);
-            std::cout << "Введите новый приоритет (1-5): ";
-            std::cin >> priority;
-            manager.editTask(index - 1, description, deadline, priority);
-        } else if (choice == 3) {
-            manager.displayTasks();
+void addTask(vector<Task>& tasks) {
+    Task newTask;
+    cout << "Описание задачи: ";
+    getline(cin >> ws, newTask.description); // ws - игнорирует пробелы
+
+    cout << "Категория: ";
+    getline(cin >> ws, newTask.category);
+
+    cout << "Тег (необязательно): ";
+    getline(cin >> ws, newTask.tag);
+
+    cout << "Приоритет (1-низкий, 2-средний, 3-высокий): ";
+    cin >> newTask.priority;
+    cin.ignore(); // очищаем буфер после cin
+
+    cout << "Срок выполнения (ДД.ММ.ГГГГ): ";
+    string dateStr;
+    getline(cin >> ws, dateStr);
+    //  Преобразование строки даты в time_t - упрощенное, без проверки формата
+    //В реальном приложении нужна более надежная обработка даты!
+    int day, month, year;
+    sscanf(dateStr.c_str(), "%d.%d.%d", &day, &month, &year);
+    tm tm_deadline = {0, 0, 0, day, month - 1, year - 1900}; //month -1, year -1900
+    newTask.deadline = mktime(&tm_deadline);
+
+
+    tasks.push_back(newTask);
+    cout << "Задача добавлена!\n";
+}
+
+void printTasks(const vector<Task>& tasks) {
+    if (tasks.empty()) {
+        cout << "Нет задач.\n";
+        return;
+    }
+    for (const auto& task : tasks) {
+        cout << "Описание задачи: " << task.description << endl;
+        cout << "Категория: " << task.category << endl;
+     
+        cout << "Приоритет: " << task.priority << endl;
+        cout << "Срок: " << ctime(&task.deadline); // ctime форматирует time_t
+        cout << "----\n";
+    }
+}
+
+int main() {
+    vector<Task> tasks;
+    int choice;
+
+    do {
+        cout << "\nМеню:\n";
+        cout << "1. Добавить задачу\n";
+        cout << "2. Вывести задачи\n";
+        cout << "0. Выход\n";
+        cout << "Выбор: ";
+        cin >> choice;
+        cin.ignore(); // очищаем буфер после cin
+
+        switch (choice) {
+            case 1: addTask(tasks); break;
+            case 2: printTasks(tasks); break;
+            case 0: cout << "До свидания!\n"; break;
+            default: cout << "Неверный выбор.\n";
         }
-    } while (choice != 4);
+    } while (choice != 0);
+
+    return 0;
+}
