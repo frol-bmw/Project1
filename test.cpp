@@ -30,8 +30,7 @@ void addTask(vector<Task>& tasks) {
     cout << "Срок выполнения (ДД.ММ.ГГГГ): ";
     string dateStr;
     getline(cin >> ws, dateStr);
-    //  Преобразование строки даты в time_t - упрощенное, без проверки формата
-    //В реальном приложении нужна более надежная обработка даты!
+
     int day, month, year;
     sscanf(dateStr.c_str(), "%d.%d.%d", &day, &month, &year);
     tm tm_deadline = {0, 0, 0, day, month - 1, year - 1900}; //month -1, year -1900
