@@ -10,7 +10,7 @@
 
 4. Простой интерфейс: Интуитивно понятный дизайн, который позволяет быстро добавлять и редактировать задачи.
 
-5. Записи:  
+5. Записи:  Помимо задач, будет возможность отдельно сделать записи
 
 
 Целевая аудитория：студенты, школьники, офисные работники, преподователи.
@@ -35,10 +35,9 @@ Main functions:
 
 3. Priorities: Set priority levels for each task to focus on what is most important.
 
-4. Reminders: Receive notifications about deadlines so that you don't forget about important things.
+4. Simple interface: Intuitive design that allows you to quickly add and edit tasks.
 
-5. Simple interface: Intuitive design that allows you to quickly add and edit tasks.
-
+5. In addition to the tasks, it will be possible to make separate entries
 
 Target audience: students, schoolchildren, office workers, teachers.
 
