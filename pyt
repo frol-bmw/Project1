@@ -43,6 +43,9 @@ class TaskManager(tk.Frame):
         records_button = tk.Button(control_frame, text='Записи', command=self.records)
         records_button.pack(fill='x', pady=5)
 
+        view_button = tk.Button(control_frame, text='Просмотреть задачи', command=self.view_tasks)
+        view_button.pack(fill='x', pady=5)
+
         # Загружаем существующие задачи
         self.load_tasks()
 
@@ -76,6 +79,9 @@ class TaskManager(tk.Frame):
 
     def records(self):
         RecordsDialog(self)
+
+    def view_tasks(self):
+        ViewTasksDialog(self)
 
 # Диалоговое окно для добавления задачи
 class AddTaskDialog(tk.Toplevel):
@@ -162,10 +168,101 @@ class RecordsDialog(tk.Toplevel):
         close_button = tk.Button(self, text='Закрыть', command=self.destroy)
         close_button.pack(pady=5)
 
+# Диалоговое окно для ведения записей
+class RecordsDialog(tk.Toplevel):
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.parent = parent
+        self.title('Записи')
+        self.create_widgets()
+
+    def create_widgets(self):
+        self.record_text = tk.Text(self, height=15, width=50)
+        self.record_text.pack(padx=10, pady=10)
+
+        add_button = tk.Button(self, text='Добавить запись', command=self.add_record)
+        add_button.pack(pady=5)
+
+        close_button = tk.Button(self, text='Закрыть', command=self.destroy)
+        close_button.pack(pady=5)
+
+    def add_record(self):
+        record = self.record_text.get('1.0', tk.END)
+        if record.strip():
+            with open('records.txt', 'a', encoding='utf-8') as file:
+                file.write(record + '\n')
+            self.record_text.delete('1.0', tk.END)
+            messagebox.showinfo('Запись добавлена', 'Запись успешно добавлена.')
+        else:
+            messagebox.showerror('Ошибка', 'Запись не может быть пустой.')
+
+
+# Диалоговое окно для ведения записей
+class RecordsDialog(tk.Toplevel):
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.parent = parent
+        self.title('Записи')
+        self.create_widgets()
+
+    def create_widgets(self):
+        self.record_text = tk.Text(self, height=15, width=50)
+        self.record_text.pack(padx=10, pady=10)
+
+        add_button = tk.Button(self, text='Добавить запись', command=self.add_record)
+        add_button.pack(pady=5)
+
+        view_button = tk.Button(self, text='Просмотреть записи', command=self.view_records)
+        view_button.pack(pady=5)
+
+        delete_button = tk.Button(self, text='Удалить запись', command=self.delete_record)
+        delete_button.pack(pady=5)
+
+        close_button = tk.Button(self, text='Закрыть', command=self.destroy)
+        close_button.pack(pady=5)
+
+    def add_record(self):
+        record = self.record_text.get('1.0', tk.END)
+        if record.strip():
+            with open('records.txt', 'a', encoding='utf-8') as file:
+                file.write(record + '\n')
+            self.record_text.delete('1.0', tk.END)
+            messagebox.showinfo('Запись добавлена', 'Запись успешно добавлена.')
+        else:
+            messagebox.showerror('Ошибка', 'Запись не может быть пустой.')
+
+    def view_records(self):
+        try:
+            with open('records.txt', 'r', encoding='utf-8') as file:
+                records = file.read()
+                self.record_text.delete('1.0', tk.END)
+                self.record_text.insert('1.0', records)
+        except FileNotFoundError:
+            messagebox.showerror('Ошибка', 'Записи не найдены.')
+
+    def delete_record(self):
+        try:
+            with open('records.txt', 'r', encoding='utf-8') as file:
+                records = file.readlines()
+            if records:
+                records.pop(0)  # Удаляем первую запись
+                with open('records.txt', 'w', encoding='utf-8') as file:
+                    file.writelines(records)
+                messagebox.showinfo('Запись удалена', 'Первая запись успешно удалена.')
+            else:
+                messagebox.showerror('Ошибка', 'Записи не найдены.')
+        except FileNotFoundError:
+            messagebox.showerror('Ошибка', 'Записи не найдены.')
+
+
+
+
+
+
 # Запуск приложения
 if __name__ == '__main__':
     root = tk.Tk()
     root.title('Менеджер задач')
-    root.geometry('500x350')
+    root.geometry('800x600')
     app = TaskManager(master=root)
     app.mainloop()
