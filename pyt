@@ -24,7 +24,7 @@ class TaskManager(tk.Frame):
 
     def create_widgets(self):
         # Список задач
-        self.task_list = tk.Listbox(self)
+        self.task_list = tk.Listbox(self, width=60)  # Изменяем ширину Listbox
         self.task_list.pack(side='left', fill='both', expand=True)
 
         # Кнопки управления задачами
@@ -162,50 +162,6 @@ class RecordsDialog(tk.Toplevel):
         self.create_widgets()
 
     def create_widgets(self):
-        record_text = tk.Text(self, height=15, width=50)
-        record_text.pack(padx=10, pady=10)
-
-        close_button = tk.Button(self, text='Закрыть', command=self.destroy)
-        close_button.pack(pady=5)
-
-# Диалоговое окно для ведения записей
-class RecordsDialog(tk.Toplevel):
-    def __init__(self, parent):
-        super().__init__(parent)
-        self.parent = parent
-        self.title('Записи')
-        self.create_widgets()
-
-    def create_widgets(self):
-        self.record_text = tk.Text(self, height=15, width=50)
-        self.record_text.pack(padx=10, pady=10)
-
-        add_button = tk.Button(self, text='Добавить запись', command=self.add_record)
-        add_button.pack(pady=5)
-
-        close_button = tk.Button(self, text='Закрыть', command=self.destroy)
-        close_button.pack(pady=5)
-
-    def add_record(self):
-        record = self.record_text.get('1.0', tk.END)
-        if record.strip():
-            with open('records.txt', 'a', encoding='utf-8') as file:
-                file.write(record + '\n')
-            self.record_text.delete('1.0', tk.END)
-            messagebox.showinfo('Запись добавлена', 'Запись успешно добавлена.')
-        else:
-            messagebox.showerror('Ошибка', 'Запись не может быть пустой.')
-
-
-# Диалоговое окно для ведения записей
-class RecordsDialog(tk.Toplevel):
-    def __init__(self, parent):
-        super().__init__(parent)
-        self.parent = parent
-        self.title('Записи')
-        self.create_widgets()
-
-    def create_widgets(self):
         self.record_text = tk.Text(self, height=15, width=50)
         self.record_text.pack(padx=10, pady=10)
 
@@ -254,10 +210,24 @@ class RecordsDialog(tk.Toplevel):
         except FileNotFoundError:
             messagebox.showerror('Ошибка', 'Записи не найдены.')
 
+# Диалоговое окно для просмотра задач
+class ViewTasksDialog(tk.Toplevel):
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.parent = parent
+        self.title('Просмотреть задачи')
+        self.create_widgets()
 
+    def create_widgets(self):
+        task_text = tk.Text(self, height=15, width=50)
+        task_text.pack(padx=10, pady=10)
 
+        close_button = tk.Button(self, text='Закрыть', command=self.destroy)
+        close_button.pack(pady=5)
 
-
+        # Выводим задачи в текстовом поле
+        tasks = self.parent.task_list.get(0, tk.END)
+        task_text.insert('1.0', '\n'.join(tasks))
 
 # Запуск приложения
 if __name__ == '__main__':
