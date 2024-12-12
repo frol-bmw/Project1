@@ -1,3 +1,5 @@
+
+
 import tkinter as tk
 from tkinter import messagebox
 from datetime import datetime
@@ -51,11 +53,7 @@ class TaskManager(tk.Frame):
 
     def load_tasks(self):
         # Здесь нужно загрузить задачи из файла или базы данных
-        tasks = [
-            Task('Задача 1', 'Работа', 1, datetime.now()),
-            Task('Задача 2', 'Личное', 2, datetime.now()),
-            Task('Задача 3', 'Другое', 3, datetime.now()),
-        ]
+   
 
         for task in tasks:
             self.task_list.insert('end', f'{task.description} ({task.category}, {format_date(task.deadline)})')
