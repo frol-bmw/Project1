@@ -111,7 +111,7 @@ class AddTaskDialog(tk.Toplevel):
         self.priority_menu.grid(row=2, column=1, padx=10, pady=5)
 
         # Дата дедлайна
-        deadline_label = tk.Label(self, text='Дедлайн:', bg='#C6F4D6')  # Добавляем зеленый цвет в фоновом режиме
+        deadline_label = tk.Label(self, text='Дедлайн(гггг-мм-дд чч:мм):', bg='#C6F4D6')  # Добавляем зеленый цвет в фоновом режиме
         deadline_label.grid(row=3, column=0, sticky='w')
         self.deadline_entry = tk.Entry(self)
         self.deadline_entry.grid(row=3, column=1, padx=10, pady=5)
@@ -229,6 +229,6 @@ class ViewTasksDialog(tk.Toplevel):
 if __name__ == '__main__':
     root = tk.Tk()
     root.title('Менеджер задач')
-    root.geometry('800x600')
+    root.geometry('800x300')
     app = TaskManager(master=root)
     app.mainloop()
