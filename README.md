@@ -41,8 +41,8 @@ Main functions:
 
 Target audience: students, schoolchildren, office workers, teachers.
 
-This project will be written using:Microsoft Visual Studio.
+This project will be written using:IDLE Shell; PyCharm. 
 
-This project will be written in the programming language: C++;
+This project will be written in the programming language: Python.
 
 User interface: Interaction with graphical interface;
