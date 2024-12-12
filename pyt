@@ -1,5 +1,3 @@
-
-
 import tkinter as tk
 from tkinter import messagebox
 from datetime import datetime
@@ -26,26 +24,26 @@ class TaskManager(tk.Frame):
 
     def create_widgets(self):
         # Список задач
-        self.task_list = tk.Listbox(self, width=60)  # Изменяем ширину Listbox
+        self.task_list = tk.Listbox(self, width=60, bg='#C6F4D6', fg='#006400')  # Изменяем ширину Listbox и добавляем зеленый цвет
         self.task_list.pack(side='left', fill='both', expand=True)
 
         # Кнопки управления задачами
-        control_frame = tk.Frame(self)
+        control_frame = tk.Frame(self, bg='#C6F4D6')  # Добавляем зеленый цвет в фоновом режиме
         control_frame.pack(side='right', fill='y')
 
-        add_button = tk.Button(control_frame, text='Добавить задачу', command=self.add_task)
+        add_button = tk.Button(control_frame, text='Добавить задачу', command=self.add_task, bg='#8BC34A', fg='#FFFFFF')  # Добавляем зеленый цвет в кнопку
         add_button.pack(fill='x', pady=5)
 
-        edit_button = tk.Button(control_frame, text='Редактировать задачу', command=self.edit_task)
+        edit_button = tk.Button(control_frame, text='Редактировать задачу', command=self.edit_task, bg='#8BC34A', fg='#FFFFFF')  # Добавляем зеленый цвет в кнопку
         edit_button.pack(fill='x', pady=5)
 
-        delete_button = tk.Button(control_frame, text='Удалить задачу', command=self.delete_task)
+        delete_button = tk.Button(control_frame, text='Удалить задачу', command=self.delete_task, bg='#8BC34A', fg='#FFFFFF')  # Добавляем зеленый цвет в кнопку
         delete_button.pack(fill='x', pady=5)
 
-        records_button = tk.Button(control_frame, text='Записи', command=self.records)
+        records_button = tk.Button(control_frame, text='Записи', command=self.records, bg='#8BC34A', fg='#FFFFFF')  # Добавляем зеленый цвет в кнопку
         records_button.pack(fill='x', pady=5)
 
-        view_button = tk.Button(control_frame, text='Просмотреть задачи', command=self.view_tasks)
+        view_button = tk.Button(control_frame, text='Просмотреть задачи', command=self.view_tasks, bg='#8BC34A', fg='#FFFFFF')  # Добавляем зеленый цвет в кнопку
         view_button.pack(fill='x', pady=5)
 
         # Загружаем существующие задачи
@@ -91,13 +89,13 @@ class AddTaskDialog(tk.Toplevel):
 
     def create_widgets(self):
         # Поле для описания задачи
-        description_label = tk.Label(self, text='Описание:')
+        description_label = tk.Label(self, text='Описание:', bg='#C6F4D6')  # Добавляем зеленый цвет в фоновом режиме
         description_label.grid(row=0, column=0, sticky='w')
         self.description_entry = tk.Entry(self)
         self.description_entry.grid(row=0, column=1, padx=10, pady=5)
 
         # Выбор категории
-        category_label = tk.Label(self, text='Категория:')
+        category_label = tk.Label(self, text='Категория:', bg='#C6F4D6')  # Добавляем зеленый цвет в фоновом режиме
         category_label.grid(row=1, column=0, sticky='w')
         self.category_var = tk.StringVar(value='Работа')
         categories = ['Работа', 'Личное', 'Другое']
@@ -105,7 +103,7 @@ class AddTaskDialog(tk.Toplevel):
         self.category_menu.grid(row=1, column=1, padx=10, pady=5)
 
         # Выбор приоритета
-        priority_label = tk.Label(self, text='Приоритет:')
+        priority_label = tk.Label(self, text='Приоритет:', bg='#C6F4D6')  # Добавляем зеленый цвет в фоновом режиме
         priority_label.grid(row=2, column=0, sticky='w')
         priorities = [str(i) for i in range(1, 6)]
         self.priority_var = tk.IntVar(value=1)
@@ -113,19 +111,19 @@ class AddTaskDialog(tk.Toplevel):
         self.priority_menu.grid(row=2, column=1, padx=10, pady=5)
 
         # Дата дедлайна
-        deadline_label = tk.Label(self, text='Дедлайн:')
+        deadline_label = tk.Label(self, text='Дедлайн:', bg='#C6F4D6')  # Добавляем зеленый цвет в фоновом режиме
         deadline_label.grid(row=3, column=0, sticky='w')
         self.deadline_entry = tk.Entry(self)
         self.deadline_entry.grid(row=3, column=1, padx=10, pady=5)
 
         # Кнопки подтверждения и отмены
-        button_frame = tk.Frame(self)
+        button_frame = tk.Frame(self, bg='#C6F4D6')  # Добавляем зеленый цвет в фоновом режиме
         button_frame.grid(row=4, columnspan=2, pady=10)
 
-        ok_button = tk.Button(button_frame, text='ОК', command=self.ok_pressed)
+        ok_button = tk.Button(button_frame, text='ОК', command=self.ok_pressed, bg='#8BC34A', fg='#FFFFFF')  # Добавляем зеленый цвет в кнопку
         ok_button.pack(side='left', padx=5)
 
-        cancel_button = tk.Button(button_frame, text='Отмена', command=self.destroy)
+        cancel_button = tk.Button(button_frame, text='Отмена', command=self.destroy, bg='#8BC34A', fg='#FFFFFF')  # Добавляем зеленый цвет в кнопку
         cancel_button.pack(side='left', padx=5)
 
     def ok_pressed(self):
@@ -160,19 +158,19 @@ class RecordsDialog(tk.Toplevel):
         self.create_widgets()
 
     def create_widgets(self):
-        self.record_text = tk.Text(self, height=15, width=50)
+        self.record_text = tk.Text(self, height=15, width=50, bg='#C6F4D6', fg='#006400')  # Добавляем зеленый цвет в текстовом поле
         self.record_text.pack(padx=10, pady=10)
 
-        add_button = tk.Button(self, text='Добавить запись', command=self.add_record)
+        add_button = tk.Button(self, text='Добавить запись', command=self.add_record, bg='#8BC34A', fg='#FFFFFF')  # Добавляем зеленый цвет в кнопку
         add_button.pack(pady=5)
 
-        view_button = tk.Button(self, text='Просмотреть записи', command=self.view_records)
+        view_button = tk.Button(self, text='Просмотреть записи', command=self.view_records, bg='#8BC34A', fg='#FFFFFF')  # Добавляем зеленый цвет в кнопку
         view_button.pack(pady=5)
 
-        delete_button = tk.Button(self, text='Удалить запись', command=self.delete_record)
+        delete_button = tk.Button(self, text='Удалить запись', command=self.delete_record, bg='#8BC34A', fg='#FFFFFF')  # Добавляем зеленый цвет в кнопку
         delete_button.pack(pady=5)
 
-        close_button = tk.Button(self, text='Закрыть', command=self.destroy)
+        close_button = tk.Button(self, text='Закрыть', command=self.destroy, bg='#8BC34A', fg='#FFFFFF')  # Добавляем зеленый цвет в кнопку
         close_button.pack(pady=5)
 
     def add_record(self):
@@ -217,10 +215,10 @@ class ViewTasksDialog(tk.Toplevel):
         self.create_widgets()
 
     def create_widgets(self):
-        task_text = tk.Text(self, height=15, width=50)
+        task_text = tk.Text(self, height=15, width=50, bg='#C6F4D6', fg='#006400')  # Добавляем зеленый цвет в текстовом поле
         task_text.pack(padx=10, pady=10)
 
-        close_button = tk.Button(self, text='Закрыть', command=self.destroy)
+        close_button = tk.Button(self, text='Закрыть', command=self.destroy, bg='#8BC34A', fg='#FFFFFF')  # Добавляем зеленый цвет в кнопку
         close_button.pack(pady=5)
 
         # Выводим задачи в текстовом поле
